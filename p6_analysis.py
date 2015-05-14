@@ -32,6 +32,3 @@ def inspect((i, j), draw_line):
             print "Path found!"
     if not goal:
         print "No path could be found, please try another tile."
-
-
-__author__ = 'Alec'
