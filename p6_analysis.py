@@ -8,7 +8,7 @@ def analyze(design):
     queue = []
     prev = []
     init = sim.get_initial_state()
-    queue.append(init, [init])
+    queue.append((init, [init]))
     prev.append(init)
     while queue:
         (state, path) = queue.pop(0)
@@ -16,7 +16,7 @@ def analyze(design):
             next_state = sim.get_next_state(state, next_move)
             if next_state is not None and next_state not in ANALYSIS and next_state not in prev:
                 ANALYSIS[next_state] = path
-                queue.append(next_state, path + [next_state])
+                queue.append((next_state, path + [next_state]))
                 prev.append(next_state)
 
 
