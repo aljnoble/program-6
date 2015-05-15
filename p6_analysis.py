@@ -10,7 +10,7 @@ def analyze(design):
     init = sim.get_initial_state()
     queue.append((init, [init]))
     prev.append(init)
-    global ANALYSIS 
+    global ANALYSIS
     ANALYSIS = {}
     while queue:
         (state, path) = queue.pop(0)
@@ -20,6 +20,7 @@ def analyze(design):
                 ANALYSIS[next_state] = path
                 queue.append((next_state, path + [next_state]))
                 prev.append(next_state)
+
 
 def inspect((i, j), draw_line):
     goal = False
