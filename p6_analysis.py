@@ -10,6 +10,8 @@ def analyze(design):
     init = sim.get_initial_state()
     queue.append((init, [init]))
     prev.append(init)
+    global ANALYSIS 
+    ANALYSIS = {}
     while queue:
         (state, path) = queue.pop(0)
         for next_move in sim.get_moves():
@@ -19,7 +21,6 @@ def analyze(design):
                 queue.append((next_state, path + [next_state]))
                 prev.append(next_state)
 
-
 def inspect((i, j), draw_line):
     goal = False
     for next_item in ANALYSIS:
@@ -27,8 +28,8 @@ def inspect((i, j), draw_line):
             path = ANALYSIS[next_item]
             for var in range(len(path) - 1):
                 goal = True
-                draw_line(path[var][0], path[var + 1][0], offset_obj=None, color_obj=path[var][1])
-            draw_line(path[-1][0], (i, j), offset_obj=None, color_obj=path[-1][1])
+                draw_line(path[var][0], path[var + 1][0], offset_obj=path[var][1], color_obj=path[var][1])
+            draw_line(path[-1][0], (i, j), offset_obj=path[-1][1], color_obj=path[-1][1])
             print "Path found!"
     if not goal:
         print "No path could be found, please try another tile."
